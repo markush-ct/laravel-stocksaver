@@ -23,6 +23,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { router } from "@inertiajs/react";
 
 export function SidebarUser({
   user,
@@ -104,7 +105,7 @@ export function SidebarUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => router.post(route("logout"))}>
               <LogOut />
               Log out
             </DropdownMenuItem>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -14,7 +15,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
+Route::get('/dashboard2', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -26,6 +27,31 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/dashboard', function () {
     return inertia('Dashboard/Index');
-});
+})->name('dashboard.index');
+Route::get('/products', function () {
+    return inertia('Dashboard/Index');
+})->name('products.index');
+Route::get('/inventory', function () {
+    return inertia('Dashboard/Index');
+})->name('inventory.index');
+Route::resource('/categories', CategoryController::class);
+Route::get('/suppliers', function () {
+    return inertia('Dashboard/Index');
+})->name('suppliers.index');
+Route::get('/discounts', function () {
+    return inertia('Dashboard/Index');
+})->name('discounts.index');
+Route::get('/monitoring', function () {
+    return inertia('Dashboard/Index');
+})->name('monitoring.index');
+Route::get('/reports', function () {
+    return inertia('Dashboard/Index');
+})->name('reports.index');
+Route::get('/staff', function () {
+    return inertia('Dashboard/Index');
+})->name('staff.index');
+Route::get('/settings', function () {
+    return inertia('Dashboard/Index');
+})->name('settings.index');
 
 require __DIR__.'/auth.php';

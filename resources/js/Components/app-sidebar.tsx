@@ -30,52 +30,52 @@ export function AppSidebar() {
     links: [
       {
         title: "Dashboard",
-        url: "#",
+        namedRoute: "dashboard.index",
         icon: Gauge,
       },
       {
         title: "Products",
-        url: "#",
+        namedRoute: "products.index",
         icon: Box,
       },
       {
         title: "Inventory",
-        url: "#",
+        namedRoute: "inventory.index",
         icon: ListChecks,
       },
       {
         title: "Categories",
-        url: "#",
+        namedRoute: "categories.index",
         icon: Grid2X2,
       },
       {
         title: "Suppliers",
-        url: "#",
+        namedRoute: "suppliers.index",
         icon: Blocks,
       },
       {
         title: "Discounts",
-        url: "#",
+        namedRoute: "discounts.index",
         icon: Percent,
       },
       {
         title: "Monitoring",
-        url: "#",
+        namedRoute: "monitoring.index",
         icon: Activity,
       },
       {
         title: "Reports",
-        url: "#",
+        namedRoute: "reports.index",
         icon: ChartNoAxesCombined,
       },
       {
         title: "Staff",
-        url: "#",
+        namedRoute: "staff.index",
         icon: User,
       },
       {
         title: "Settings",
-        url: "#",
+        namedRoute: "settings.index",
         icon: Settings,
       },
     ],

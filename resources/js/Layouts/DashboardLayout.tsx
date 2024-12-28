@@ -14,7 +14,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { router } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 import { Home } from "lucide-react";
 
 export default function DashboardLayout({
@@ -30,22 +30,22 @@ export default function DashboardLayout({
   return (
     <SidebarProvider>
       <AppSidebar />
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 px-4">
+      <main className="px-4 py-2 pt-0 space-y-4 w-full overflow-x-hidden">
+        <header className="flex h-16 shrink-0 items-center gap-2">
           <SidebarTrigger className="-ml-1" />
           <Separator orientation="vertical" className="mr-2 h-4" />
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="#">Dashboard</BreadcrumbLink>
+                <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
               </BreadcrumbItem>
               {breadcrumbs.map((breadcrumb) => (
                 <>
                   <BreadcrumbSeparator className="hidden md:block" />
                   <BreadcrumbItem>
                     {breadcrumb.link ? (
-                      <BreadcrumbLink href={breadcrumb.link}>
-                        {breadcrumb.title}
+                      <BreadcrumbLink>
+                        <Link href={breadcrumb.link}>{breadcrumb.title}</Link>
                       </BreadcrumbLink>
                     ) : (
                       <BreadcrumbPage>{breadcrumb.title}</BreadcrumbPage>
@@ -62,11 +62,12 @@ export default function DashboardLayout({
             onClick={() => router.get("/")}
           >
             <Home />
-            <span>Back to home</span>
+            <span className="md:block hidden">Back to home</span>
           </Button>
         </header>
-        <main className="p-4 pt-0">{children}</main>
-      </SidebarInset>
+
+        {children}
+      </main>
     </SidebarProvider>
   );
 }

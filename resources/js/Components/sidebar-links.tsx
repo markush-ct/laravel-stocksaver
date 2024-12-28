@@ -6,11 +6,16 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { Link } from "@inertiajs/react";
 
 export default function SidebarLinks({
   items,
 }: {
-  items: { title: string; url: string; icon: LucideIcon }[];
+  items: {
+    title: string;
+    namedRoute: string;
+    icon: LucideIcon;
+  }[];
 }) {
   return (
     <SidebarGroup>
@@ -18,11 +23,14 @@ export default function SidebarLinks({
         <SidebarMenu>
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton asChild>
-                <a href={item.url}>
+              <SidebarMenuButton
+                asChild
+                isActive={route().current(item.namedRoute)}
+              >
+                <Link href={route(item.namedRoute)}>
                   <item.icon />
                   <span>{item.title}</span>
-                </a>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
