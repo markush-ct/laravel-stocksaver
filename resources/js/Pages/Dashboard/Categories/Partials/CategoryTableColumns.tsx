@@ -9,26 +9,9 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import { Category } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
-
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type Category = {
-  id: string;
-  name: string;
-  description: string;
-  created_at: string;
-};
-
-export type CategoriesPaginated = {
-  data: Category[];
-  meta: {
-    total: number;
-    current_page: number;
-    per_page: number;
-  };
-};
 
 export const columns: ColumnDef<Category>[] = [
   {

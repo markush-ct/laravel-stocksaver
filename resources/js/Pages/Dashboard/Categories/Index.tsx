@@ -10,12 +10,13 @@ import { DataTable } from "@/components/ui/data-table";
 import DashboardLayout from "@/Layouts/DashboardLayout";
 import { Head, router } from "@inertiajs/react";
 import { Plus } from "lucide-react";
-import { CategoriesPaginated, columns } from "./Partials/Table/Columns";
+import { columns } from "./Partials/CategoryTableColumns";
+import { Category, PaginatedData } from "@/types";
 
 export default function CategoriesPage({
   categories,
 }: {
-  categories: CategoriesPaginated;
+  categories: PaginatedData<Category>;
 }) {
   const breadcrumbs = [
     {
