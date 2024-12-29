@@ -9,13 +9,10 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Link, router } from "@inertiajs/react";
 import { Home } from "lucide-react";
+import Cookies from "js-cookie";
 
 export default function DashboardLayout({
   children,
@@ -27,8 +24,10 @@ export default function DashboardLayout({
     link?: string;
   }[];
 }) {
+  const sidebarDefaultOpen = Cookies.get("sidebar:state") === "true";
+
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={sidebarDefaultOpen}>
       <AppSidebar />
       <main className="px-4 py-2 pt-0 space-y-4 w-full overflow-x-hidden">
         <header className="flex h-16 shrink-0 items-center gap-2">
