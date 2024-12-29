@@ -1,18 +1,8 @@
-import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DataTableColumnHeader } from "@/components/ui/data-table-column-header";
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu";
+import CategoryTableRowActions from "@/Pages/Dashboard/Categories/Partials/CategoryTableRowActions";
 import { Category } from "@/types";
-import { router } from "@inertiajs/react";
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal } from "lucide-react";
 
 export const columns: ColumnDef<Category>[] = [
   {
@@ -65,6 +55,7 @@ export const columns: ColumnDef<Category>[] = [
     },
   },
   {
+    id: "created at",
     accessorKey: "created_at",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Created At" />
@@ -72,36 +63,7 @@ export const columns: ColumnDef<Category>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => {
-      console.log(row);
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="ghost"
-              className="h-8 w-8 p-0 data-[state=open]:bg-muted"
-            >
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem>View</DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() =>
-                router.get(route("categories.edit", row.original.id))
-              }
-            >
-              Edit
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Delete</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
+    cell: ({ row }) => <CategoryTableRowActions row={row} />,
     enableHiding: false,
   },
 ];

@@ -6,7 +6,7 @@ export interface User {
 }
 
 export type Category = {
-    id: string;
+    id: number;
     name: string;
     description: string;
     created_at: string;
