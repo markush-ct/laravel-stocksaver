@@ -104,21 +104,21 @@ export function DataTable<TData, TValue>({
 
   return (
     <>
-      <div className="flex flex-1 items-center gap-2 py-4">
+      <div className="flex max-sm:flex-col flex-1 items-center gap-2 py-4">
         <Input
           placeholder="Filter names..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("name")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="sm:max-w-sm"
         />
 
         {isFiltered && (
           <Button
             variant="ghost"
             onClick={() => table.resetColumnFilters()}
-            className="h-8 px-2 lg:px-3"
+            className="h-8 px-2 lg:px-3 max-sm:w-full"
           >
             Reset
             <X />
@@ -127,7 +127,7 @@ export function DataTable<TData, TValue>({
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button variant="outline" className="ml-auto max-sm:w-full">
               <LucideSettings2 />
               <span>View</span>
             </Button>
