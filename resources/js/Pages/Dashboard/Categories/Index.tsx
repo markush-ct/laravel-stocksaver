@@ -30,8 +30,6 @@ export default function CategoriesPage({
     perPage: categories.meta.per_page,
   };
 
-  console.log(categories);
-
   return (
     <DashboardLayout breadcrumbs={breadcrumbs}>
       <Head title="Categories" />

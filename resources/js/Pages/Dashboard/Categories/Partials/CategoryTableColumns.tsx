@@ -10,6 +10,7 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Category } from "@/types";
+import { router } from "@inertiajs/react";
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 
@@ -71,7 +72,9 @@ export const columns: ColumnDef<Category>[] = [
   },
   {
     id: "actions",
-    cell: () => {
+    cell: ({ row }) => {
+      console.log(row);
+
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -86,7 +89,13 @@ export const columns: ColumnDef<Category>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem>View</DropdownMenuItem>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() =>
+                router.get(route("categories.edit", row.original.id))
+              }
+            >
+              Edit
+            </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Delete</DropdownMenuItem>
           </DropdownMenuContent>

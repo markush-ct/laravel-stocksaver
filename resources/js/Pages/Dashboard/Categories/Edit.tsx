@@ -1,17 +1,22 @@
 import { Button } from "@/components/ui/button";
 import DashboardLayout from "@/Layouts/DashboardLayout";
+import { Category } from "@/types";
 import { Head } from "@inertiajs/react";
 import { ArrowLeft } from "lucide-react";
-import CategoryForm from "./Partials/CategoryForm";
+import UpdateCategoryForm from "./Partials/UpdateCategoryForm";
 
-export default function CategoriesCreatePage() {
+export default function CategoriesEditPage({
+  category,
+}: {
+  category: Category;
+}) {
   const breadcrumbs = [
     {
       title: "Categories",
       link: route("categories.index"),
     },
     {
-      title: "Create",
+      title: category.name,
     },
   ];
 
@@ -26,7 +31,7 @@ export default function CategoriesCreatePage() {
         </Button>
       </div>
 
-      <CategoryForm />
+      <UpdateCategoryForm category={category} />
     </DashboardLayout>
   );
 }

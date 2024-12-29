@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CategoriesListResource;
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
@@ -16,7 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         $pageSize = Request::input('pageSize') ?? 10;
-        $categories = CategoriesListResource::collection(
+        $categories = CategoryResource::collection(
             Category::latest()->paginate($pageSize)
         );
 
@@ -38,11 +38,7 @@ class CategoryController extends Controller
     {
         Category::create($request->validated());
 
-        return redirect()
-            ->back()
-            ->with('message', [
-                'success' => 'You have successfully created a category.'
-            ]);
+        return redirect()->back();
     }
 
     /**
@@ -58,7 +54,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return inertia('Dashboard/Categories/Edit', [
+            'category' => new CategoryResource($category),
+        ]);
     }
 
     /**
@@ -66,7 +64,9 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $category->update($request->validated());
+
+        return redirect()->back();
     }
 
     /**
