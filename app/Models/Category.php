@@ -12,6 +12,8 @@ class Category extends Model
     /** @use HasFactory<\Database\Factories\CategoryFactory> */
     use HasFactory;
 
+    protected $fillable = ['name', 'description'];
+
     protected function createdAt(): Attribute
     {
         return Attribute::make(

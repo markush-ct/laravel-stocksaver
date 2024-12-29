@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -34,7 +35,10 @@ Route::get('/products', function () {
 Route::get('/inventory', function () {
     return inertia('Dashboard/Index');
 })->name('inventory.index');
-Route::resource('/categories', CategoryController::class);
+Route::resource('/categories', CategoryController::class)
+    ->middleware([
+        'categories.store' => HandlePrecognitiveRequests::class
+    ]);
 Route::get('/suppliers', function () {
     return inertia('Dashboard/Index');
 })->name('suppliers.index');
