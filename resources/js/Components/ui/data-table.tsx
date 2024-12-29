@@ -87,7 +87,10 @@ export function DataTable<TData, TValue>({
     const nextPage = pagination.pageIndex + 1; // Convert back to 1-based index
     const newPageSize = pagination.pageSize;
 
-    if (nextPage !== serverPagination.currentPage) {
+    if (
+      nextPage !== serverPagination.currentPage ||
+      newPageSize !== serverPagination.perPage
+    ) {
       router.get(
         route("categories.index", { page: nextPage, pageSize: newPageSize }),
         {},
