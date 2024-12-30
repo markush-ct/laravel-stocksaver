@@ -12,6 +12,13 @@ export type Category = {
     created_at: string;
 };
 
+export type Supplier = {
+    id: number;
+    name: string;
+    contact_number: string;
+    email: string;
+};
+
 export type PaginatedData<T = any> = {
     data: T[];
     links: Record<string, string>;

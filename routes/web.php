@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests;
 use Illuminate\Support\Facades\Route;
@@ -39,9 +40,10 @@ Route::resource('/categories', CategoryController::class)
     ->middleware([
         'categories.store' => HandlePrecognitiveRequests::class
     ]);
-Route::get('/suppliers', function () {
-    return inertia('Dashboard/Index');
-})->name('suppliers.index');
+Route::resource('/suppliers', SupplierController::class)
+    ->middleware([
+        'suppliers.store' => HandlePrecognitiveRequests::class
+    ]);
 Route::get('/discounts', function () {
     return inertia('Dashboard/Index');
 })->name('discounts.index');

@@ -42,12 +42,14 @@ interface DataTableProps<TData, TValue> {
     perPage: number;
     total: number;
   };
+  routeForPagination: string;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   serverPagination,
+  routeForPagination,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -92,7 +94,7 @@ export function DataTable<TData, TValue>({
       newPageSize !== serverPagination.perPage
     ) {
       router.get(
-        route("categories.index", { page: nextPage, pageSize: newPageSize }),
+        route(routeForPagination, { page: nextPage, pageSize: newPageSize }),
         {},
         {
           preserveState: true,

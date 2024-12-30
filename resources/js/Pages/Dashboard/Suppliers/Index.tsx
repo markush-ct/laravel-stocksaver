@@ -10,24 +10,24 @@ import { DataTable } from "@/components/ui/data-table";
 import DashboardLayout from "@/Layouts/DashboardLayout";
 import { Head, router } from "@inertiajs/react";
 import { Plus } from "lucide-react";
-import { columns } from "./Partials/CategoryTableColumns";
-import { Category, PaginatedData } from "@/types";
+import { columns } from "./Partials/SupplierTableColumns";
+import { PaginatedData, Supplier } from "@/types";
 
 export default function CategoriesPage({
-  categories,
+  suppliers,
 }: {
-  categories: PaginatedData<Category>;
+  suppliers: PaginatedData<Supplier>;
 }) {
   const breadcrumbs = [
     {
-      title: "Categories",
+      title: "Suppliers",
     },
   ];
 
-  const categoriesPagination = {
-    currentPage: categories.meta.current_page,
-    total: categories.meta.total,
-    perPage: categories.meta.per_page,
+  const suppliersPagination = {
+    currentPage: suppliers.meta.current_page,
+    total: suppliers.meta.total,
+    perPage: suppliers.meta.per_page,
   };
 
   return (
@@ -35,26 +35,23 @@ export default function CategoriesPage({
       <Head title="Categories" />
 
       <div className="flex justify-end">
-        <Button
-          size="sm"
-          onClick={() => router.get(route("categories.create"))}
-        >
+        <Button size="sm" onClick={() => router.get(route("suppliers.create"))}>
           <Plus />
-          <span>Create category</span>
+          <span>Create supplier</span>
         </Button>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>Categories List</CardTitle>
-          <CardDescription>Here's a list of categories.</CardDescription>
+          <CardTitle>Suppliers List</CardTitle>
+          <CardDescription>Here's a list of suppliers.</CardDescription>
         </CardHeader>
         <CardContent>
           <DataTable
             columns={columns}
-            data={categories.data}
-            serverPagination={categoriesPagination}
-            routeForPagination="categories.index"
+            data={suppliers.data}
+            serverPagination={suppliersPagination}
+            routeForPagination="suppliers.index"
           />
         </CardContent>
       </Card>
