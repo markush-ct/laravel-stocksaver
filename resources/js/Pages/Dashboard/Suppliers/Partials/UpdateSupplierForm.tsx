@@ -30,6 +30,8 @@ export default function UpdateSupplierForm({
   });
 
   const submit: FormEventHandler = (e) => {
+    console.log(form.data);
+
     e.preventDefault();
 
     form.submit({
@@ -97,7 +99,7 @@ export default function UpdateSupplierForm({
 
             {/* Email address field */}
             <div className="grid w-full items-center gap-1.5">
-              <Label htmlFor="email">Contact Number</Label>
+              <Label htmlFor="email">Email Address</Label>
               <Input
                 type="email"
                 id="email"
