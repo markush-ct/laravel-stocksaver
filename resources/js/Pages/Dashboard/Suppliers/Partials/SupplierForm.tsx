@@ -11,22 +11,17 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { PhoneInput } from "@/components/ui/phone-input";
 import { useToast } from "@/hooks/use-toast";
-import { Supplier } from "@/types";
 import { useForm } from "laravel-precognition-react-inertia";
 import { Loader2Icon, Save } from "lucide-react";
 import { FormEventHandler } from "react";
 
-export default function UpdateSupplierForm({
-  supplier,
-}: {
-  supplier: Supplier;
-}) {
+export default function SupplierForm() {
   const { toast } = useToast();
 
-  const form = useForm("patch", route("suppliers.update", supplier.id), {
-    name: supplier.name,
-    contact_number: supplier.contact_number,
-    email: supplier.email,
+  const form = useForm("post", route("suppliers.store"), {
+    name: "",
+    contact_number: "",
+    email: "",
   });
 
   const submit: FormEventHandler = (e) => {
@@ -35,8 +30,10 @@ export default function UpdateSupplierForm({
     form.submit({
       preserveScroll: true,
       onSuccess: () => {
+        form.reset();
+
         toast({
-          description: "You have successfully updated the supplier.",
+          description: "You have successfully created a supplier.",
         });
       },
       onError: () => {
@@ -52,9 +49,9 @@ export default function UpdateSupplierForm({
     <form onSubmit={submit}>
       <Card>
         <CardHeader>
-          <CardTitle>Update Supplier</CardTitle>
+          <CardTitle>Create Supplier</CardTitle>
           <CardDescription>
-            Fill up the form below to update the supplier.
+            Fill up the form below to create a supplier.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -119,7 +116,7 @@ export default function UpdateSupplierForm({
             ) : (
               <Save />
             )}
-            <span>{form.processing ? "Updating..." : "Update"}</span>
+            <span>{form.processing ? "Saving..." : "Save"}</span>
           </Button>
         </CardFooter>
       </Card>
